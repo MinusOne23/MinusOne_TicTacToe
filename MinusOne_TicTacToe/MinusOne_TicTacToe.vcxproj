@@ -139,7 +139,13 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="GameBoard.cpp" />
     <ClCompile Include="MinusOne_TicTacToe.cpp" />
+    <ClCompile Include="UI.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="GameBoard.h" />
+    <ClInclude Include="UI.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
