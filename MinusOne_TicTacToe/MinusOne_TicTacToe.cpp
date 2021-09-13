@@ -4,8 +4,12 @@
 #include <iostream>
 #include "UI.h"
 #include "GameBoard.h"
+using namespace std;
 
 int main()
 {
-    std::cout << "Hello World!\n";
+    UI ui;
+    ui.displayMenu();
+
+    return 0;
 }
