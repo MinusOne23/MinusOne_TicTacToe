@@ -9,7 +9,11 @@ using namespace std;
 int main()
 {
     UI ui;
-    ui.displayMenu();
+    //Varibles
+    int numRounds;
+
+    numRounds = ui.displayMenu(); // Displays menu and returns numRounds
+    cout << "numRounds =" << numRounds;
 
     return 0;
 }
