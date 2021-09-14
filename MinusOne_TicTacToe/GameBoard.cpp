@@ -28,9 +28,17 @@ GameBoard::GameBoard() {
 	xTurn = true;
 }
 
-GameBoard::~GameBoard() {
+GameBoard::~GameBoard() { //Deconstructror
 	delete[] board;
 }
+
+int* GameBoard::getBoard() { //Accessor
+	return board;
+};
+
+bool GameBoard::getTurn() { //Accessor
+	return xTurn;
+};
 
 bool GameBoard::switchTurn() {
 	xTurn = !xTurn;

@@ -39,4 +39,23 @@ int UI::displayMenu()
 	while (menuChoice != 3); // While menuChoice is not "End Program", repeat code untill valid choice is made
 };
 
+//after correct placement, displayBoard is called
+void UI::displayBoard(int curRound,int numRounds, int * board) {
+	cout << "\nCurrent Round : " << curRound << " of " << numRounds << endl << endl;
+	cout << "\n\n\t " << board[0] << " | " << board[1] << " | " << board[2] << endl
+		 << "\t------------\n"
+		 << "\t " << board[3] << " | " << board[4] << " | " << board[5] << endl
+		 << "\t------------\n"
+		 << "\t " << board[6] << " | " << board[7] << " | " << board[8] << endl;
 
+};
+
+//Displays Scoreboard on call after round finishes
+void UI::scoreBoard(int xWins, int oWins, int draw) {
+	cout << "\nScoreBoard:"
+		<< "\n-------------"
+		<< "\nPlayer 1: " << xWins
+		<< "\nPlayer 2: " << oWins
+		<< "\nDraws: " << draw
+		<< "\n-------------\n";
+}

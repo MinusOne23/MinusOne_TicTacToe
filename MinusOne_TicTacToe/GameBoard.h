@@ -16,6 +16,8 @@ private:
 public:
 	GameBoard(); // Default constructor that creates a new tic tac toe board
 	~GameBoard(); // Destructor to deallocate the board array
+	int* getBoard(); //Accessor
+	bool getTurn(); //Accessor
 	bool switchTurn(); // Flips xTurn and returns new value
 	bool playSpace(int pos); // Plays space if valid and returns true, otherwise returns false
 	int checkForWinner(); // Returns 0 if game not concluded, 1 for Player One win 2 for Player Two win and 3 for a draw
