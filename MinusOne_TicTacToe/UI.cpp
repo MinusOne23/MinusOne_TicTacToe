@@ -19,19 +19,18 @@ bool UI::displayMenu()
 {
 	//Varibles
 	int menuChoice = 0;
-	//Displays Menu in a do-while statement
-	cout << "================================\n"
-		<< "WELCOME TO MINUSONE-TIC_TAC_TOE\n"
-		<< "================================\n"
-		<< "\t1 - START GAME\n"
-		<< "\t2- INSTRUCTIONS\n"
-		<< "\t3 - QUIT GAME\n"
-		<< "================================\n"
-		<< "PLEASE ENTER YOUR NUMBER CHOICE AND PRESS ENTER:";
-	cin >> menuChoice;
 
 	do {
-		
+		//Displays Menu in a do-while statement
+		cout << "================================\n"
+			<< "WELCOME TO MINUSONE-TIC_TAC_TOE\n"
+			<< "================================\n"
+			<< "\t1 - START GAME\n"
+			<< "\t2- INSTRUCTIONS\n"
+			<< "\t3 - QUIT GAME\n"
+			<< "================================\n"
+			<< "PLEASE ENTER YOUR NUMBER CHOICE AND PRESS ENTER:";
+		cin >> menuChoice;
 		switch (menuChoice)
 		{
 		case 1: // Start Game
