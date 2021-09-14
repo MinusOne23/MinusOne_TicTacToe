@@ -42,13 +42,19 @@ int main()
             switch (gamestate)
             {
             case 1:
-                cout << "Player 1 WINS Round " << ui.getCurRound() << " out of " << ui.getNumRounds() << endl;
+                cout << "\n====================================== ";
+                cout << "\n    Player 1 WINS Round " << ui.getCurRound() << " out of " << ui.getNumRounds();
+                cout << "\n====================================== ";
                 break;
             case 2:
-                cout << "Player 2 WINS Round " << ui.getCurRound() << " out of " << ui.getNumRounds() << endl;
+                cout << "\n====================================== ";
+                cout << "\n    Player 2 WINS Round " << ui.getCurRound() << " out of " << ui.getNumRounds();
+                cout << "\n====================================== ";
                 break;
             case 3:
-                cout << "No winner in Round " << ui.getCurRound() << " out of " << ui.getNumRounds() << endl;
+                cout << "\n====================================== ";
+                cout << "\n    No winner in Round " << ui.getCurRound() << " out of " << ui.getNumRounds();
+                cout << "\n====================================== ";
                 break;
             }
             ui.addResult(gamestate);
