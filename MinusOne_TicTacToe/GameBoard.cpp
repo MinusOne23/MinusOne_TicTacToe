@@ -34,6 +34,7 @@ GameBoard::~GameBoard() {
 
 bool GameBoard::switchTurn() {
 	xTurn = !xTurn;
+	return xTurn;
 }
 
 bool GameBoard::playSpace(int pos) {
@@ -81,7 +82,7 @@ int GameBoard::checkForWinner() {
 	return 3;
 }
 
-void GameBoard::resetBoard(bool newXTurn = true) {
+void GameBoard::resetBoard(bool newXTurn) {
 	// set every space on board to empty
 	for (int i = 0; i < 9; i++) {
 		board[i] = 0;
