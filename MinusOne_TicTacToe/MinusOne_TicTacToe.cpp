@@ -8,56 +8,59 @@ using namespace std;
 
 int main()
 {
-    //Class Objectives
+    //Class Objects
     UI ui;
     GameBoard game;
 
-    //Varibles
-    int numRounds, position;
-    int curRound = 1;
+    //Variables
+    int position;
     int* board = game.getBoard();
-    int xWins = 0,oWins = 0,draw = 0;
     
     //Start program
-    numRounds = ui.displayMenu(); // Displays: menu
-                                  // Returns: numRounds
+    bool playGame = ui.displayMenu(); // Displays: menu
 
-    while (curRound <= numRounds) {
-        int gamestate = game.checkForWinner();
-        ui.displayBoard(curRound, numRounds, board); // Displays: Game Board
-        while (gamestate == 0) {
-            bool turn = game.getTurn();
-            do {
-                if (turn == 1) {
-                    cout << "\nPlayer 1(1) Choose your Square: ";
-                }
-                else {
-                    cout << "\nPlayer 2(2) Choose your Square: ";
-                }
-                cin >> position;
+    while (playGame) {
+        game.resetBoard();
+        while (ui.getCurRound() <= ui.getNumRounds()) {
+            int gamestate = game.checkForWinner();
+            ui.displayBoard(board); // Displays: Game Board
+            while (gamestate == 0) {
+                bool turn = game.getTurn();
+                do {
+                    if (turn == 1) {
+                        cout << "Player 1(1) Choose your Square: ";
+                    }
+                    else {
+                        cout << "Player 2(2) Choose your Square: ";
+                    }
+                    cin >> position;
+                } while (!(game.playSpace(position)));
+                game.switchTurn();
+                gamestate = game.checkForWinner();
+                ui.displayBoard(board); // Displays: Game Board
             }
-            while (!(game.playSpace(position)));
-            game.switchTurn();
-            gamestate = game.checkForWinner();
-            ui.displayBoard(curRound, numRounds, board); // Displays: Game Board
+            switch (gamestate)
+            {
+            case 1:
+                cout << "Player 1 WINS Round " << ui.getCurRound() << " out of " << ui.getNumRounds() << endl;
+                break;
+            case 2:
+                cout << "Player 2 WINS Round " << ui.getCurRound() << " out of " << ui.getNumRounds() << endl;
+                break;
+            case 3:
+                cout << "No winner in Round " << ui.getCurRound() << " out of " << ui.getNumRounds() << endl;
+                break;
+            }
+            ui.addResult(gamestate);
+            ui.incrementRound();
+            ui.scoreBoard();
+            game.resetBoard(ui.getCurRound() % 2 == 1);
         }
-        switch (gamestate)
-        {
-        case 1:
-            cout << "Player 1 WINS Round " << curRound << " out of " << numRounds;
-            xWins++;
-            break;
-        case 2:
-            cout << "Player 2 WINS Round " << curRound << " out of " << numRounds;
-            oWins++;
-            break;
-        case 3:
-            cout << "No winner in Round " << curRound << " out of " << numRounds;
-            draw++;
-            break;
-        }
-        curRound++;
-        ui.scoreBoard(xWins, oWins, draw);
-        game.resetBoard(curRound %2 == 1);
+
+        cout << endl << endl;
+        playGame = ui.displayMenu();
     }
+
+    system("pause");
+    return 0;
 }
