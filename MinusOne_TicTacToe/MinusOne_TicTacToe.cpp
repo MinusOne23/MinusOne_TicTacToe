@@ -26,15 +26,35 @@ int main()
             ui.displayBoard(board); // Displays: Game Board
             while (gamestate == 0) {
                 bool turn = game.getTurn();
-                do {
-                    if (turn == 1) {
-                        cout << "Player 1(1) Choose your Square: ";
-                    }
-                    else {
-                        cout << "Player 2(2) Choose your Square: ";
-                    }
+
+                if (turn == 1) {
+                    cout << "Player 1(1) Choose your Square: ";
+                }
+                else {
+                    cout << "Player 2(2) Choose your Square: ";
+                }
+                cin >> position;
+
+                while (cin.fail()) {
+                    cin.clear();
+                    cin.ignore(256, '\n');
+
+                    cout << "Enter valid position: ";
                     cin >> position;
-                } while (!(game.playSpace(position)));
+                }
+
+                while (!game.playSpace(position)) {
+                    cout << "Enter valid position: ";
+                    cin >> position;
+
+                    while (cin.fail()) {
+                        cin.clear();
+                        cin.ignore(256, '\n');
+
+                        cout << "Enter valid position: ";
+                        cin >> position;
+                    }
+                }
                 game.switchTurn();
                 gamestate = game.checkForWinner();
                 ui.displayBoard(board); // Displays: Game Board

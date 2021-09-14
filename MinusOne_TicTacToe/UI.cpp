@@ -31,6 +31,13 @@ bool UI::displayMenu()
 			<< "================================\n"
 			<< "PLEASE ENTER YOUR NUMBER CHOICE AND PRESS ENTER:";
 		cin >> menuChoice;
+
+		if (cin.fail()) {
+			menuChoice = -1;
+			cin.clear();
+			cin.ignore(256, '\n');
+		}
+
 		switch (menuChoice)
 		{
 		case 1: // Start Game
