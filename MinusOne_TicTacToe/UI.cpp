@@ -4,15 +4,16 @@
 using namespace std;
 
 UI::UI() {
+	//sets all integers used for the scoreboard to be initialized as 0
 	xWins = oWins = draws = 0;
 }
 
 string UI::getSpotIcon(int boardVal, int pos) {
-	if (boardVal == 0) {
+	if (boardVal == 0) { // If the board positionvalue is a 0(empty) then return the position
 		return to_string(pos);
 	}
 
-	return boardVal == 1 ? "X" : "Y";
+	return boardVal == 1 ? "X" : "O"; // If the board value is a 1 then return an "X", else return a "O"
 }
 
 bool UI::displayMenu()
@@ -25,14 +26,14 @@ bool UI::displayMenu()
 		cout << "================================\n"
 			<< "WELCOME TO MINUSONE-TIC_TAC_TOE\n"
 			<< "================================\n"
-			<< "\t1 - START GAME\n"
-			<< "\t2- INSTRUCTIONS\n"
-			<< "\t3 - QUIT GAME\n"
+			<< "\t1 - START GAME\n" // User option 1
+			<< "\t2- INSTRUCTIONS\n" //User option 2
+			<< "\t3 - QUIT GAME\n" //User option 3
 			<< "================================\n"
 			<< "PLEASE ENTER YOUR NUMBER CHOICE AND PRESS ENTER:";
 		cin >> menuChoice;
 
-		if (cin.fail()) {
+		if (cin.fail()) { //If the user input is not an integer then the cin failed
 			menuChoice = -1;
 			cin.clear();
 			cin.ignore(256, '\n');
@@ -45,7 +46,7 @@ bool UI::displayMenu()
 			cout << "How many Rounds do you want to play:"; // Promts user for round limit
 			cin >> numRounds;
 
-			while (numRounds < 1) {
+			while (numRounds < 1) { //Input validation for a positive round limit
 				cout << "Enter positive number of rounds: ";
 				cin >> numRounds;
 			}
@@ -56,6 +57,7 @@ bool UI::displayMenu()
 			oWins = 0;
 			draws = 0;
 			return true;
+
 		case 2: //Display instructions
 			cout << "You Chose: Instructions\n";
 			cout << endl;
@@ -66,10 +68,12 @@ bool UI::displayMenu()
 			cout << "\t5) To choose a spot to play, type the number corresponding to the spot on the screen\n";
 			cout << endl;
 			break;
+
 		case 3: // End Program
 			cout << "You Chose: End Program\n" << "Good Bye\n\n";
 			return false;
-		default:
+
+		default: // Input Validation
 			cout << endl << endl;
 			cout << "*******************************\n";
 			cout << "INVALID NUMBER PLEASE TRY AGAIN\n";
@@ -93,6 +97,13 @@ void UI::displayBoard(int * board) {
 		 <<	 "\t------------\n"
 		 <<	 "\t " << getSpotIcon(board[6], 6) << " | " << getSpotIcon(board[7], 7) << " | " << getSpotIcon(board[8], 8) << endl;
 	cout << endl;
+	
+	//Game Board
+	// 0 | 1 | 2
+	//-----------
+	// 3 | 4 | 5 
+	//-----------
+	// 6 | 7 | 8
 
 };
 
@@ -106,6 +117,8 @@ void UI::scoreBoard() {
 		<< "\n-------------\n";
 }
 
+
+//Adds the results of the round used for the scoreboard
 void UI::addResult(int result) {
 	switch (result) {
 	case 1:
@@ -120,14 +133,17 @@ void UI::addResult(int result) {
 	}
 }
 
+//Increments the current round counter
 void UI::incrementRound() {
 	curRound++;
 }
 
+//Accessor
 int UI::getCurRound() {
 	return curRound;
 }
 
+//Accessor
 int UI::getNumRounds() {
 	return numRounds;
 }

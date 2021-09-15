@@ -4,23 +4,23 @@ using namespace std;
 
 // Outlines all winning line combinations
 const int GameBoard::winCombos[8][3] = {
-	{0,1,2},
-	{3,4,5},
-	{6,7,8},
-	{0,3,6},
-	{1,4,7},
-	{2,5,8},
-	{0,4,8},
-	{2,4,6}
+	{0,1,2}, //Top horizontal win
+	{3,4,5}, //Middle horizontal win
+	{6,7,8}, //Bottom horozontal win
+	{0,3,6}, //Left Vertical win
+	{1,4,7}, //Middle Verticle win
+	{2,5,8}, //Right Verticle win
+	{0,4,8}, // Left-to-Right Diagnal win 
+	{2,4,6} //Right-to-left Diagnal win
 };
 
 const int GameBoard::numWinCombos = 8;
 
-GameBoard::GameBoard() {
-	board = new int[9];
+GameBoard::GameBoard() { // Constructor
+	board = new int[9]; // creates an array called board with a size of 9 integers
 
 	// initializes board to be completely empty
-	for (int i = 0; i < 9; i++) {
+	for (int i = 0; i < 9; i++) { // loops through the array assining each index to be zero
 		board[i] = 0;
 	}
 
@@ -28,7 +28,7 @@ GameBoard::GameBoard() {
 	xTurn = true;
 }
 
-GameBoard::~GameBoard() { //Deconstructror
+GameBoard::~GameBoard() { //Destructror
 	delete[] board;
 }
 
@@ -40,42 +40,45 @@ bool GameBoard::getTurn() { //Accessor
 	return xTurn;
 };
 
-bool GameBoard::switchTurn() {
-	xTurn = !xTurn;
+bool GameBoard::switchTurn() { //Switches who's turn it is;PLayer 1 or PLayer 2
+	xTurn = !xTurn; // xTurn is now the opposite. If True then false, or if false now true
 	return xTurn;
 }
 
 bool GameBoard::playSpace(int pos) {
-	if (pos < 0 || pos > 8 || board[pos] != 0) {
-		return false;
+	if (pos < 0 || pos > 8 || board[pos] != 0) { //If the iser input(pos) is outside the scope of between 0 through 8 then return false
+		return false; // return false = input is invalid
 	}
 
-	if (xTurn) {
+	if (xTurn) { // If xTurn is true then its player 1's turn 
 		board[pos] = 1;
 	}
-	else {
+	else {// If xTurn is false then its player 2's turn 
 		board[pos] = 2;
 	}
 
-	return true;
+	return true; //return true = input is valid
 }
 
 int GameBoard::checkForWinner() {
-	for (int i = 0; i < numWinCombos; i++) {
+	//Varibles
+	bool foundEmpty = false;
+
+	for (int i = 0; i < numWinCombos; i++) { //Loop going throuhg all winning combinations
 		// retrieves from the board the 3 spaces in the winning combination
-		int a = board[winCombos[i][0]];
+		int a = board[winCombos[i][0]]; 
 		int b = board[winCombos[i][1]];
 		int c = board[winCombos[i][2]];
 
+		//If all 3 squares from the winning combonations contain a 1(player 1) or 2(player 2) then there is a winner
 		if (a != 0 && a == b && b == c) {
 			// returns the winner
-			return a;
+			return a; //return the value of who won, 1(player 1) or 2 (player 2)
 		}
 	}
 
-	bool foundEmpty = false;
-	for (int i = 0; i < 9; i++) {
-		if (board[i] == 0) {
+	for (int i = 0; i < 9; i++) { // If there is an empty space in one of the winning combos then break and move on to next winning combo
+		if (board[i] == 0) { // empty space is categorized as a 0 on the board, the displayBoard function dosnt display the 0's, 1's, or 2's
 			foundEmpty = true;
 			break;
 		}
