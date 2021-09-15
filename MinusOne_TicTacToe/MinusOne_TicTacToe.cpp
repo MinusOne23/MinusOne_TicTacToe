@@ -28,10 +28,10 @@ int main()
                 bool turn = game.getTurn();
 
                 if (turn == 1) {
-                    cout << "Player 1(1) Choose your Square: ";
+                    cout << "Player 1(X) Choose your Square: ";
                 }
                 else {
-                    cout << "Player 2(2) Choose your Square: ";
+                    cout << "Player 2(Y) Choose your Square: ";
                 }
                 cin >> position;
 
