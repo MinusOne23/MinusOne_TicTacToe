@@ -28,11 +28,11 @@ int main()
             while (gamestate == 0) { //While the gamestate is no winner yet, continue looping
                 bool turn = game.getTurn();
 
-                if (turn == 1) { //If the turn is 1 then its player 1's turn
+                if (turn == 1) {//If the turn is 1 then its player 1's turn
                     cout << "Player 1(X) Choose your Square: ";
                 }
                 else {//Else its player 2's turn
-                    cout << "Player 2(O) Choose your Square: ";
+                    cout << "Player 2(Y) Choose your Square: ";
                 }
                 cin >> position;
 

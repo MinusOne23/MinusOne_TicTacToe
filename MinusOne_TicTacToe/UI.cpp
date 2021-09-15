@@ -13,7 +13,7 @@ string UI::getSpotIcon(int boardVal, int pos) {
 		return to_string(pos);
 	}
 
-	return boardVal == 1 ? "X" : "O"; // If the board value is a 1 then return an "X", else return a "O"
+	return boardVal == 1 ? "X" : "O";
 }
 
 bool UI::displayMenu()
